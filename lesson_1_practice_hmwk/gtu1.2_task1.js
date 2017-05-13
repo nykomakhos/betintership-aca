@@ -20,18 +20,18 @@ var oWrapper={};
 var arr1 = [true, false, 0, 1, '', 'hello']; 
 function createDefaultWrapper(i) {
 	var Ob;
-	if(typeof(arr1[i]) === "boolean"){
-		Ob = new Boolean(arr1[i]);
-	} else if (typeof(arr1[i]) === "number") {
-		Ob = new Number(arr1[i]);
-	} else if (typeof(arr1[i]) === "string") {
-		Ob = new String(arr1[i]);
-		//Ob.myValueOf = 
-	};
-	return Ob;
+	Ob = new Object(arr1[i]);
+	Ob.myValueOf = function () {
+		switch (Ob.valueOf()){
+			case 'true': return true;
+			case 'false': return false;
+			case (+Ob.valueOf())!==NaN: return +Ob.valueOf();
+		default: return Ob.valueOf();
+		}
+	}
 }
 for (var i = 0; i < arr1.length; i++) {
-    oWrapper = createDefaultWrapper(arr1[i]);
+    oWrapper = createDefaultWrapper(i);
     console.log(oWrapper); // representation of that object in console
     // console.log("toString: ", oWrapper.toString())
     // console.log("valueOf: ", oWrapper.valueOf());
