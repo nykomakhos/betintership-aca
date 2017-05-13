@@ -17,24 +17,19 @@ for (var i = 0; i < arr0.length; i++) {
 //valueOf function returns only string also in cases when it got a number as the argument, 
 //so the problem is to change their valueOf to return number it it’s a number wrapped in string and boolean if it’s a boolean.
 var oWrapper={};
-var arr1 = [true, false, 0, 1, '', 'hello']; 
+var arr1 = [true, false, 0, 1, '98', 'hello']; 
 function createDefaultWrapper(i) {
 	var Ob;
 	Ob = new Object(arr1[i]);
-	Ob.myValueOf = function () {
-		switch (Ob.valueOf()){
-			case 'true': return true;
-			case 'false': return false;
-			case (+Ob.valueOf())!==NaN: return +Ob.valueOf();
-		default: return Ob.valueOf();
-		}
-	}
+	if (Ob === 'true') {return true};
+	if (Ob === 'false') {return false};
+	if (!isNaN(+Ob)) {return (+Ob)};
+	return Ob;
 }
 for (var i = 0; i < arr1.length; i++) {
     oWrapper = createDefaultWrapper(i);
     console.log(oWrapper); // representation of that object in console
     // console.log("toString: ", oWrapper.toString())
-    // console.log("valueOf: ", oWrapper.valueOf());
 }
 
 
