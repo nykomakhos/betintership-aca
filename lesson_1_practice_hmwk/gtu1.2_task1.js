@@ -8,33 +8,33 @@ var arr0 = [1, 2, true, false, 12, 541];
 for (var i = 0; i < arr0.length; i++) {
     var S = new String(arr0[i]); // String wrapped object 
     console.log(S); // representation of that object in console
-    console.log("toString: ", S.toString());
-    console.log("valueOf: ", S.valueOf());
+    // console.log("toString: ", S.toString());
+    // console.log("valueOf: ", S.valueOf());
 }
 
 
 //try the same also for the case when it was DECLARED in its default wrapper.
 //valueOf function returns only string also in cases when it got a number as the argument, 
 //so the problem is to change their valueOf to return number it it’s a number wrapped in string and boolean if it’s a boolean.
-var oWrapper;
-var arr = [true, false, 0, 1, '', 'hello']; 
-function createDefaultWrapper(i,item) {
+var oWrapper={};
+var arr1 = [true, false, 0, 1, '', 'hello']; 
+function createDefaultWrapper(i) {
 	var Ob;
-	if(typeof(item) === "boolean"){
-		Ob = new Boolean(arr[i]);
-	} else if (typeof(item) === "number") {
-		Ob = new Number(arr[i]);
-	} else if (typeof(item) === "string") {
-		Ob = new String(arr[i]);
-		Ob.myValueOf = 
+	if(typeof(arr1[i]) === "boolean"){
+		Ob = new Boolean(arr1[i]);
+	} else if (typeof(arr1[i]) === "number") {
+		Ob = new Number(arr1[i]);
+	} else if (typeof(arr1[i]) === "string") {
+		Ob = new String(arr1[i]);
+		//Ob.myValueOf = 
 	};
-	return S;
+	return Ob;
 }
-for (var i = 0; i < arr.length; i++) {
-    oWrapper = createDefaultWrapper(i,item);
+for (var i = 0; i < arr1.length; i++) {
+    oWrapper = createDefaultWrapper(arr1[i]);
     console.log(oWrapper); // representation of that object in console
-    console.log("toString: ", oWrapper.toString())
-    console.log("valueOf: ", oWrapper.valueOf());
+    // console.log("toString: ", oWrapper.toString())
+    // console.log("valueOf: ", oWrapper.valueOf());
 }
 
 
