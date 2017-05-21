@@ -19,21 +19,16 @@ for (var i = 0; i < arr0.length; i++) {
 var oWrapper={};
 var arr1 = [true, false, 0, 1, '98', 'hello']; 
 function createDefaultWrapper(i) {
-	var Ob;
+	var Ob, isNumber;
 	Ob = new Object(arr1[i]);
 	if (Ob === 'true') {return true};
 	if (Ob === 'false') {return false};
-	if (!isNaN(+Ob)) {return (+Ob)};
-	return Ob;
+	
+    isNumber = /^[0-9.]+$/.test(Ob); // Check if string contains only digits
+    if (isNumber) {return +Ob} 
+        else {return Ob};
 }
 for (var i = 0; i < arr1.length; i++) {
     oWrapper = createDefaultWrapper(i);
     console.log(oWrapper); // representation of that object in console
-    // console.log("toString: ", oWrapper.toString())
 }
-
-
-
-
-
-
